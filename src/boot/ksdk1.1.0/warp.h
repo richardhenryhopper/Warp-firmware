@@ -33,14 +33,14 @@ typedef enum
 	kWarpTypeMaskLambda570Y		= (1 << 19),
 	kWarpTypeMaskLambda600O		= (1 << 20),
 	kWarpTypeMaskLambda650R		= (1 << 21),
-	
+
 	kWarpTypeMaskLambda610R		= (1 << 22),
 	kWarpTypeMaskLambda680S		= (1 << 23),
 	kWarpTypeMaskLambda730T		= (1 << 24),
 	kWarpTypeMaskLambda760U		= (1 << 25),
 	kWarpTypeMaskLambda810V		= (1 << 26),
 	kWarpTypeMaskLambda860W		= (1 << 27),
-	
+
 	kWarpTypeMaskTotalVOC		= (1 << 28),
 	kWarpTypeMaskEquivalentCO2	= (1 << 29),
 
@@ -94,7 +94,7 @@ typedef enum
 	kWarpStatusBadDeviceCommand,
 
 	/*
-	 *	Generic comms error 
+	 *	Generic comms error
 	 */
 	kWarpStatusCommsError,
 
@@ -166,7 +166,7 @@ typedef enum
 typedef enum
 {
 	kWarpSizesI2cBufferBytes		= 4,
-	kWarpSizesSpiBufferBytes		= 3,
+	kWarpSizesSpiBufferBytes		= 4, /* Was 3 bytes */
 	kWarpSizesBME680CalibrationValuesCount	= 41,
 } WarpSizes;
 
@@ -252,6 +252,7 @@ typedef enum
 
 	kWarpSensorOutputRegisterCCS811ALG_DATA				= 0x02,
 	kWarpSensorOutputRegisterCCS811RAW_DATA				= 0x03,
+	kWarpSensorOutputRegisterCCS811RAW_REF_NTC			= 0x06,
 
 	kWarpSensorOutputRegisterBMX055accelACCD_X_LSB			= 0x02,
 	kWarpSensorOutputRegisterBMX055accelACCD_X_MSB			= 0x03,
@@ -341,7 +342,7 @@ typedef struct
 } WarpThermalChamberKL03MemoryFill;
 
 WarpStatus	warpSetLowPowerMode(WarpPowerMode powerMode, uint32_t sleepSeconds);
-void		enableI2Cpins(uint16_t pullupValue);
+void		enableI2Cpins(uint8_t pullupValue);
 void		disableI2Cpins(void);
 void		enableSPIpins(void);
 void		disableSPIpins(void);
